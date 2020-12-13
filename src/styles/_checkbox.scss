@@ -1,0 +1,41 @@
+.checkbox-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+
+  .original-checkbox {
+    display: none;
+  }
+  .custom-checkbox {
+    margin-right: 15px;
+    height: 15px;
+    width: 15px;
+    background: transparent;
+    border: 2px solid #797979;
+    border-radius: 2px;
+  }
+  input:checked ~ {
+    .custom-checkbox {
+      background: #d32d1e;
+      border: 2px solid #d32d1e;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        content: "";
+        background: url("../images/check-white.svg") center no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}

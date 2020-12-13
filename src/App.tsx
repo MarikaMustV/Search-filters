@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import FiltersArea from "./components/FiltersArea";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "./redux/productSlice";
+import { actions as filterActions } from "./redux/filterSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header className="header">
+        <img src={require("./images/logo.png").default} className="logo" alt="Company logo" />
       </header>
+      <FiltersArea />
+      <footer className="footer">
+        <button onClick={() => dispatch(filterActions.clearFilters())} className="footer-button transparent">
+          Clear
+        </button>
+        <button onClick={() => dispatch(fetchProducts())} className="footer-button filled">
+          Update
+        </button>
+      </footer>
     </div>
   );
 }
